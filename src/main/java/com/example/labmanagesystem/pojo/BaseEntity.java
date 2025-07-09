@@ -20,6 +20,9 @@ public class BaseEntity {
     /** 删除标记 */
     private Integer delFlag;
 
+    /** 查找标记，区分不同的时间查询条件 */
+    private Integer searchFlag;
+
     /** 开始时间 */
     private Date fromTime;
 
