@@ -3,6 +3,8 @@ package com.example.labmanagesystem.service.impl;
 import com.example.labmanagesystem.mapper.ReagentMapper;
 import com.example.labmanagesystem.pojo.domain.Reagent;
 import com.example.labmanagesystem.service.IReagentService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,9 @@ public class ReagentServiceImpl implements IReagentService {
     private ReagentMapper reagentMapper;
 
     @Override
-    public List<Reagent> list(Reagent reagent) {
-        return reagentMapper.list(reagent);
+    public PageInfo<Reagent> list(Reagent reagent, int pageNum, int pageSize, String order) {
+        PageHelper.startPage(pageNum, pageSize, order);
+        List<Reagent> results = reagentMapper.list(reagent);
+        return new PageInfo<>(results);
     }
 }

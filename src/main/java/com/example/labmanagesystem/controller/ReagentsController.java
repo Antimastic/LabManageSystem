@@ -3,11 +3,9 @@ package com.example.labmanagesystem.controller;
 import com.example.labmanagesystem.pojo.Result;
 import com.example.labmanagesystem.pojo.domain.Reagent;
 import com.example.labmanagesystem.service.IReagentService;
-import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -27,8 +25,7 @@ public class ReagentsController {
      */
     @GetMapping("/list")
     public Result list(Reagent reagent, @RequestParam(value="pageNum", defaultValue = "1") int pageNum, @RequestParam(value="pageSize", defaultValue = "10") int pageSize, @RequestParam(value="order", defaultValue = "id asc") String order) {
-        PageHelper.startPage(pageNum, pageSize, order);
-        List<Reagent> reagents = reagentService.list(reagent);
+        PageInfo<Reagent> reagents = reagentService.list(reagent, pageNum, pageSize, order);
         return Result.success(reagents);
     }
 }
