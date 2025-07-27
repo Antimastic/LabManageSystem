@@ -10,11 +10,61 @@
         <result property="weight" column="weight"/>
         <result property="location" column="location"/>
         <result property="status" column="status"/>
+        <result property="labFlag" column="lab_flag"/>
         <result property="expirationDate" column="expiration_date"/>
         <result property="delFlag" column="delete_flag"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
     </resultMap>
+
+    <insert id="add">
+        INSERT INTO reagent_table
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="name != null and name != ''">name,</if>
+            <if test="casCode != null and casCode != ''">cas_code,</if>
+            <if test="molecularFormula != null and molecularFormula != ''">molecular_formula,</if>
+            <if test="molecularWeight != null">molecular_weight,</if>
+            <if test="location != null and location != ''">location,</if>
+            <if test="weight != null">weight,</if>
+            <if test="status != null">status,</if>
+            <if test="labFlag != null">lab_flag,</if>
+            <if test="deleteFlag != null">delete_flag,</if>
+            <if test="expirationDate != null">expiration_date,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="name != null and name != ''">#{name},</if>
+            <if test="casCode != null and casCode != ''">#{casCode},</if>
+            <if test="molecularFormula != null and molecularFormula != ''">#{molecularFormula},</if>
+            <if test="molecularWeight != null">#{molecularWeight},</if>
+            <if test="location != null and location != ''">#{location},</if>
+            <if test="weight != null">#{weight},</if>
+            <if test="status != null">#{status},</if>
+            <if test="labFlag != null">#{labFlag},</if>
+            <if test="deleteFlag != null">#{deleteFlag},</if>
+            <if test="expirationDate != null">#{expirationDate},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+        </trim>
+    </insert>
+
+    <update id="edit">
+        UPDATE reagent_table
+        <set>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="casCode != null and casCode != ''">cas_code = #{casCode},</if>
+            <if test="molecularFormula != null and molecularFormula != ''">molecular_formula = #{molecularFormula},</if>
+            <if test="molecularWeight != null">molecular_weight = #{molecularWeight},</if>
+            <if test="weight != null">weight = #{weight},</if>
+            <if test="location != null">location = #{location},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
     <select id="list" resultMap="ReagentMap">
         SELECT id, name, cas_code, molecular_formula, molecular_weight, weight, location, status, expiration_date, delete_flag, create_time, update_time
         FROM reagent_table
@@ -24,6 +74,7 @@
             <if test="molecularFormula != null and molecularFormula != ''">AND molecular_formula LIKE concat('%', #{molecularFormula}, '%')</if>
             <if test="location != null and location != ''">AND location LIKE concat('%', #{location}, '%')</if>
             <if test="status != null">AND status = #{status}</if>
+            <if test="labFlag != null">AND lab_flag = #{labFlag}</if>
             <if test="molecularWeight != null">AND molecular_weight = #{molecularWeight}</if>
             <if test="weight != null">AND weight = #{weight}</if>
             <if test="searchFlag != null">

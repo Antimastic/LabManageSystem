@@ -15,4 +15,20 @@ public interface IReagentService {
      * @return 试剂列表
      */
     public PageInfo<Reagent> list(Reagent reagent, int pageNum, int pageSize, String order);
+
+    /**
+     * 根据条件更新试剂信息
+     *
+     * @param reagent 新的试剂信息
+     * @return
+     */
+    public int edit(Reagent reagent);
+
+    /**
+     * 新增试剂信息
+     *
+     * @param reagent 新的试剂信息
+     * @return
+     */
+    public int add(Reagent reagent);
 }

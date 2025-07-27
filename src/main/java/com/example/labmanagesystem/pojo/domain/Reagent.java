@@ -23,6 +23,9 @@ public class Reagent extends BaseEntity {
     /** 试剂分子量 */
     private Double molecularWeight;
 
+    /** 实验室自制标记 */
+    private Integer labFlag;
+
     /** 试剂库存量 */
     private Double weight;
 

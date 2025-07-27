@@ -27,4 +27,16 @@ public class Result {
         result.msg = msg;
         return result;
     }
+
+    public static Result toResult(boolean result, String msg) {
+        return result ? success() : error(500, msg);
+    }
+
+    public static Result toResult(boolean result) {
+        return toResult(result, "操作失败");
+    }
+
+    public static Result toResult(int result) {
+        return toResult(result > 0);
+    }
 }

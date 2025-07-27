@@ -22,4 +22,14 @@ public class ReagentServiceImpl implements IReagentService {
         List<Reagent> results = reagentMapper.list(reagent);
         return new PageInfo<>(results);
     }
+
+    @Override
+    public int edit(Reagent reagent) {
+        return reagentMapper.edit(reagent);
+    }
+
+    @Override
+    public int add(Reagent reagent) {
+        return reagentMapper.add(reagent);
+    }
 }

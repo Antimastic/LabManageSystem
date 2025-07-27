@@ -26,6 +26,26 @@ public class ReagentsController {
     @GetMapping("/list")
     public Result list(Reagent reagent, @RequestParam(value="pageNum", defaultValue = "1") int pageNum, @RequestParam(value="pageSize", defaultValue = "10") int pageSize, @RequestParam(value="order", defaultValue = "id asc") String order) {
         PageInfo<Reagent> reagents = reagentService.list(reagent, pageNum, pageSize, order);
+        if (reagents == null) {
+            return Result.error(500, "为查询到特定的试剂信息");
+        }
         return Result.success(reagents);
+    }
+
+    /**
+     * 更新reagents信息
+     * @param reagent 新的reagents信息
+     * @return Result
+     */
+    @PostMapping("/edit")
+    public Result edit(@RequestBody Reagent reagent) {
+        int result = reagentService.edit(reagent);
+        return Result.toResult(result);
+    }
+
+    @PutMapping("/add")
+    public Result add(@RequestBody Reagent reagent) {
+        int result = reagentService.add(reagent);
+        return Result.toResult(result);
     }
 }

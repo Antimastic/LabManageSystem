@@ -14,4 +14,18 @@ public interface ReagentMapper {
      * @return
      */
     public List<Reagent> list(Reagent reagent);
+
+    /**
+     * 修改试剂信息
+     * @param reagent
+     * @return
+     */
+    public int edit(Reagent reagent);
+
+    /**
+     * 新增试剂信息
+     * @param reagent
+     * @return
+     */
+    public int add(Reagent reagent);
 }
