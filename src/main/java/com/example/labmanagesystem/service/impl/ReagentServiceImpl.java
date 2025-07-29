@@ -32,4 +32,9 @@ public class ReagentServiceImpl implements IReagentService {
     public int add(Reagent reagent) {
         return reagentMapper.add(reagent);
     }
+
+    @Override
+    public int delete(Integer[] ids) {
+        return reagentMapper.delete(ids);
+    }
 }

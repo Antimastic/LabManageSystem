@@ -65,6 +65,14 @@
         WHERE id = #{id}
     </update>
 
+    <delete id="delete">
+        DELETE FROM reagent_table
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
     <select id="list" resultMap="ReagentMap">
         SELECT id, name, cas_code, molecular_formula, molecular_weight, weight, location, status, expiration_date, delete_flag, create_time, update_time
         FROM reagent_table

@@ -31,4 +31,12 @@ public interface IReagentService {
      * @return
      */
     public int add(Reagent reagent);
+
+    /**
+     * 删除试剂信息
+     *
+     * @param ids 删除的试剂id
+     * @return
+     */
+    public int delete(Integer[] ids);
 }

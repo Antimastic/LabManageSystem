@@ -48,4 +48,10 @@ public class ReagentsController {
         int result = reagentService.add(reagent);
         return Result.toResult(result);
     }
+
+    @DeleteMapping("/{ids}")
+    public Result delete(@PathVariable Integer[] ids) {
+        int result = reagentService.delete(ids);
+        return Result.toResult(result);
+    }
 }
