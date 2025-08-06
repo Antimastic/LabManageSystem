@@ -11,6 +11,7 @@
         <result property="location" column="location"/>
         <result property="status" column="status"/>
         <result property="labFlag" column="lab_flag"/>
+        <result property="reagentCategory" column="reagent_category"/>
         <result property="expirationDate" column="expiration_date"/>
         <result property="delFlag" column="delete_flag"/>
         <result property="createTime" column="create_time"/>
@@ -29,6 +30,7 @@
             <if test="weight != null">weight,</if>
             <if test="status != null">status,</if>
             <if test="labFlag != null">lab_flag,</if>
+            <if test="reagentCategory != null">reagent_category,</if>
             <if test="deleteFlag != null">delete_flag,</if>
             <if test="expirationDate != null">expiration_date,</if>
             <if test="createTime != null">create_time,</if>
@@ -45,6 +47,7 @@
             <if test="weight != null">#{weight},</if>
             <if test="status != null">#{status},</if>
             <if test="labFlag != null">#{labFlag},</if>
+            <if test="reagentCategory != null">#{reagentCategory},</if>
             <if test="deleteFlag != null">#{deleteFlag},</if>
             <if test="expirationDate != null">#{expirationDate},</if>
             <if test="createTime != null">#{createTime},</if>
@@ -60,6 +63,9 @@
             <if test="molecularFormula != null and molecularFormula != ''">molecular_formula = #{molecularFormula},</if>
             <if test="molecularWeight != null">molecular_weight = #{molecularWeight},</if>
             <if test="weight != null">weight = #{weight},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="labFlag != null">lab_flag = #{labFlag},</if>
+            <if test="reagentCategory != null">reagent_category = #{reagentCategory},</if>
             <if test="location != null">location = #{location},</if>
         </set>
         WHERE id = #{id}
@@ -90,6 +96,7 @@
                 <if test="searchFlag == 1">AND update_time BETWEEN #{fromTime} AND #{toTime}</if>
                 <if test="searchFlag == 2">AND expiration_date BETWEEN #{fromTime} AND #{toTime}</if>
             </if>
+            <if test="reagentCategory != null">AND reagent_category = #{reagentCategory}</if>
             AND delete_flag = 0
         </where>
     </select>

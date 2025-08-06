@@ -27,7 +27,7 @@ public class ReagentsController {
     public Result list(Reagent reagent, @RequestParam(value="pageNum", defaultValue = "1") int pageNum, @RequestParam(value="pageSize", defaultValue = "10") int pageSize, @RequestParam(value="order", defaultValue = "id asc") String order) {
         PageInfo<Reagent> reagents = reagentService.list(reagent, pageNum, pageSize, order);
         if (reagents == null) {
-            return Result.error(500, "为查询到特定的试剂信息");
+            return Result.error(500, "未查询到特定的试剂信息");
         }
         return Result.success(reagents);
     }

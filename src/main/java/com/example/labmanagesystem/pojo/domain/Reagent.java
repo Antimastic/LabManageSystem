@@ -2,13 +2,11 @@ package com.example.labmanagesystem.pojo.domain;
 
 import com.example.labmanagesystem.pojo.BaseEntity;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.util.Date;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
 public class Reagent extends BaseEntity {
     /** 试剂名称 */
@@ -25,6 +23,15 @@ public class Reagent extends BaseEntity {
 
     /** 实验室自制标记 */
     private Integer labFlag;
+
+    /** 所属实验室 */
+    private String labName;
+
+    /** 试剂管理员（高危试剂时审核需要） */
+    private String labManager;
+
+    /** 高危试剂标记（0普通，1高危） */
+    private Integer reagentCategory;
 
     /** 试剂库存量 */
     private Double weight;
